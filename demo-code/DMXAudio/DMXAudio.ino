@@ -367,7 +367,7 @@ void loop()
 		{
 			if (players[i].sdwav->isStopped())
 			{
-				// restart it
+				// FIXME restart it
 			}
 		}
 		// if paused, leave it alone
