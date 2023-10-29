@@ -67,6 +67,7 @@ typedef struct
 	AudioMixer4 *mixerR;
 	uint8_t channel;
 	AudioPlaySdWav *sdwav;
+	uint32_t startStamp;
 } dmxAudioPlayer_t;
 
 typedef enum
@@ -139,6 +140,15 @@ void setup()
 
 	players_setup();
 
+	if (!SD.begin(BUILTIN_SDCARD))
+	{
+		while(1)
+		{
+			Serial.println("SD Begin failed");
+			delay(500);
+		}
+	}
+
 	// Start the receiver
 	dmxRx.begin();
 
@@ -149,6 +159,7 @@ static void stopAllPlayers(void)
 {
 	for (uint8_t i = 0; i < numPlayers; i++)
 	{
+		Serial.printf("stopAllPlayers: Stopping player %d\n", i);
 		players[i].sdwav->stop();
 		players[i].flags = 0;
 		players[i].vol = 0;
@@ -156,28 +167,58 @@ static void stopAllPlayers(void)
 	}
 }
 
-static uint8_t findAvailablePlayer(void)
+static uint8_t findAvailablePlayer(bool allowLocked)
 {
+	uint8_t oldestIdx;
+	uint32_t oldestStamp;
+
+	Serial.printf("findAvailablePlayer: looking for player, locked are %s\n", allowLocked ? "allowed" : "not allowed");
+
 	for (uint8_t i = 0; i < numPlayers; i++)
 	{
 		if (!(players[i].flags & DMX_AUDIO_PLAYER_FLAG_PLAYING))
 		{
-			return i;
+			if (!(players[i].flags & DMX_AUDIO_PLAYER_FLAG_LOCKED))
+			{
+				Serial.printf("findAvailablePlayer: found player %d not playing\n", i);
+				return i;
+			}
 		}
 	}
 	
-	// FIXME otherwise find the oldest playing one, and use it
+	oldestIdx = 255;
+	oldestStamp = UINT32_MAX;
+	// otherwise find the oldest playing one, and use it
+	for (uint8_t i = 0; i < numPlayers; i++)
+	{
+		if (!(players[i].flags & DMX_AUDIO_PLAYER_FLAG_LOCKED) || allowLocked)
+		{
+			if (players[i].startStamp < oldestStamp)
+			{
+				Serial.printf("findAvailablePlayer: found oldest unlocked player %d, started at %lu\n", i, players[i].startStamp);
+				oldestStamp = players[i].startStamp;
+				oldestIdx = i;
+			}
+		}
+	}
+
+	Serial.printf("findAvailablePlayer: found player %d to replace\n", oldestIdx);
+
+	return oldestIdx;
 }
 
 static uint8_t findPlayerWithTrack(uint32_t track)
 {
+	Serial.printf("findPlayerWithTrack: Finding player with track %lu\n", track);
 	for (uint8_t i = 0; i < numPlayers; i++)
 	{
 		if ((players[i].track == track) && (players[i].flags & DMX_AUDIO_PLAYER_FLAG_PLAYING))
 		{
+			Serial.printf("findPlayerWithTrack: Found player %d\n", i);
 			return i;
 		}
 	}
+	Serial.printf("findPlayerWithTrack: Did not find player\n");
 	return 255;
 }
 
@@ -190,6 +231,7 @@ void setPlayerVolume(uint8_t playerIdx, uint8_t volume)
 	{
 		if (players[playerIdx].flags & DMX_AUDIO_PLAYER_FLAG_PLAYING)
 		{
+			Serial.printf("setPlayerVolume: Setting player %d volume to %d\n", playerIdx, volume);
 			players[playerIdx].vol = volume;
 			players[playerIdx].mixerL->gain(players[playerIdx].channel, volume_f);
 			players[playerIdx].mixerR->gain(players[playerIdx].channel, volume_f);
@@ -201,6 +243,7 @@ void stopPlayer(uint8_t playerIdx)
 {
 	if (playerIdx != 255)
 	{
+		Serial.printf("stopPlayer: Stopping player %d\n", playerIdx);
 		players[playerIdx].sdwav->stop();
 		players[playerIdx].flags = 0;
 		players[playerIdx].vol = 0;
@@ -214,6 +257,7 @@ void pausePlayer(uint8_t playerIdx)
 	{
 		if ((players[playerIdx].flags & DMX_AUDIO_PLAYER_FLAG_PLAYING) && !(players[playerIdx].sdwav->isPaused()))
 		{
+			Serial.printf("pausePlayer: Pausing player %d\n", playerIdx);
 			players[playerIdx].flags |= DMX_AUDIO_PLAYER_FLAG_PAUSED;
 			players[playerIdx].sdwav->togglePlayPause();
 		}
@@ -226,9 +270,38 @@ void resumePlayer(uint8_t playerIdx)
 	{
 		if ((players[playerIdx].flags & DMX_AUDIO_PLAYER_FLAG_PLAYING) && (players[playerIdx].sdwav->isPaused()))
 		{
+			Serial.printf("resumePlayer: Resuming player %d\n", playerIdx);
 			players[playerIdx].flags &= ~DMX_AUDIO_PLAYER_FLAG_PAUSED;
 			players[playerIdx].sdwav->togglePlayPause();
 		}
+	}
+}
+
+void startPlayer(uint8_t playerIdx, uint32_t track, uint8_t volume, uint8_t flags)
+{
+	char trackname[16];
+	float volume_f;
+	volume_f = ((float) volume) / (128.0);
+
+	snprintf(trackname, 15, "%lu.wav", track);
+
+	if (playerIdx != 255)
+	{
+		// if file does not exist, die
+		if (!SD.exists(trackname))
+		{
+			Serial.printf("startPlayer: File %s not found\n", trackname);
+			return;
+		}
+
+		Serial.printf("startPlayer: Starting file %s on player %d\n", trackname, playerIdx);
+		players[playerIdx].flags = flags | DMX_AUDIO_PLAYER_FLAG_PLAYING;
+		players[playerIdx].track = track;
+		players[playerIdx].vol = volume;
+		players[playerIdx].mixerL->gain(players[playerIdx].channel, volume_f);
+		players[playerIdx].mixerR->gain(players[playerIdx].channel, volume_f);
+		players[playerIdx].sdwav->play(trackname);
+		players[playerIdx].startStamp = millis();
 	}
 }
 
@@ -237,6 +310,7 @@ void loop()
 	uint8_t newCommand;
 	uint16_t newTrackNum;
 	uint8_t newVolume;
+	uint8_t newPlayer;
 
 	newCommand = dmxRx.get(myAddress);
 	if (lastCommand != newCommand)
@@ -254,91 +328,178 @@ void loop()
 			case DMX_AUDIO_COMMAND_STOP_ALL:
 			{
 				// stop all players
+				Serial.println("loop: received STOP_ALL command");
 				stopAllPlayers();
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PLAY_ONCE_POLY:
 			{
+				Serial.printf("loop: received PLAY_ONCE_POLY command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// find the oldest non-locked player
+				newPlayer = findAvailablePlayer(false);
+
+				if (newPlayer == 255)
+				{
+					break;
+				}
+
+				Serial.printf("loop: found player %d\n", newPlayer);
+
 				// stop it if not stopped
+				stopPlayer(newPlayer);
+
 				// configure it for the specified track and volume
-				// play
+				startPlayer(newPlayer, newTrackNum, newVolume, 0);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PLAY_LOOP_POLY:
 			{
+				Serial.printf("loop: received PLAY_LOOP_POLY command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// find the oldest non-locked player
+				newPlayer = findAvailablePlayer(false);
+
+				if (newPlayer == 255)
+				{
+					break;
+				}
+
+				Serial.printf("loop: found player %d\n", newPlayer);
+
 				// stop it if not stopped
+				stopPlayer(newPlayer);
+
 				// configure it for the specified track and volume, and looping
-				// play
+				startPlayer(newPlayer, newTrackNum, newVolume, DMX_AUDIO_PLAYER_FLAG_LOOPING);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PLAY_ONCE_MONO:
 			{
+				Serial.printf("loop: received PLAY_ONCE_MONO command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// stop all players
+				stopAllPlayers();
+
+				Serial.printf("loop: found player 0\n");
+
 				// take player 0
 				// configure it for the specified track and volume
-				// play
+				startPlayer(0, newTrackNum, newVolume, 0);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PLAY_LOOP_MONO:
 			{
+				Serial.printf("loop: received PLAY_ONCE_LOOP command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// stop all players
+				stopAllPlayers();
+
+				Serial.printf("loop: found player 0\n");
+
 				// take player 0
 				// configure it for the specified track and volume, and looping
-				// play
+				startPlayer(0, newTrackNum, newVolume, DMX_AUDIO_PLAYER_FLAG_LOOPING);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED:
 			{
+				Serial.printf("loop: received PLAY_ONCE_POLY_LOCKED command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// find the oldest non-locked player
+				newPlayer = findAvailablePlayer(false);
+
+				if (newPlayer == 255)
+				{
+					break;
+				}
+
+				Serial.printf("loop: found player %d\n", newPlayer);
+
 				// stop it if not stopped
+				stopPlayer(newPlayer);
+
 				// configure it for the specified track and volume, and locked
-				// play
+				startPlayer(newPlayer, newTrackNum, newVolume, DMX_AUDIO_PLAYER_FLAG_LOCKED);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED:
 			{
+				Serial.printf("loop: received PLAY_LOOP_POLY_LOCKED command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// find the oldest non-locked player
+				newPlayer = findAvailablePlayer(false);
+
+				if (newPlayer == 255)
+				{
+					break;
+				}
+
+				Serial.printf("loop: found player %d\n", newPlayer);
+
 				// stop it if not stopped
+				stopPlayer(newPlayer);
+
 				// configure it for the specified track and volume, locked, and looping
-				// play
+				startPlayer(newPlayer, newTrackNum, newVolume, DMX_AUDIO_PLAYER_FLAG_LOCKED | DMX_AUDIO_PLAYER_FLAG_LOOPING);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_STOP:
 			{
+				Serial.printf("loop: received STOP command, track is %lu", newTrackNum);
+
 				// find any player for the specified track
 				uint8_t playerIdx = findPlayerWithTrack(newTrackNum);
+
+				Serial.printf("loop: stopping track %d\n", playerIdx);
+
 				// stop it
 				stopPlayer(playerIdx);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_PAUSE:
 			{
+				Serial.printf("loop: received PAUSE command, track is %lu", newTrackNum);
+
 				// find any player for the specified track
 				uint8_t playerIdx = findPlayerWithTrack(newTrackNum);
+
+				Serial.printf("loop: pausing track %d\n", playerIdx);
+
 				// pause it
 				pausePlayer(playerIdx);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_RESUME:
 			{
+				Serial.printf("loop: received RESUME command, track is %lu", newTrackNum);
+
 				// find the first player for the specified track
 				uint8_t playerIdx = findPlayerWithTrack(newTrackNum);
+
+				Serial.printf("loop: resuming track %d\n", playerIdx);
+
 				// resume it
 				resumePlayer(playerIdx);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_TRACK_VOLUME:
 			{
+				Serial.printf("loop: received VOLUME command, track is %lu, volume is %d\n", newTrackNum, newVolume);
+
 				// find the first player for the specified track
 				uint8_t playerIdx = findPlayerWithTrack(newTrackNum);
-				// adjust volume
+
+				Serial.printf("loop: adjusting volume on track %d\n", playerIdx);
+
+				// adjust voVolumelume
 				setPlayerVolume(playerIdx, newVolume);
 				break;
 			}
 			case DMX_AUDIO_COMMAND_MASTER_VOLUME:
 			{
+				Serial.printf("loop: received MASTER_VOLUME command, volume is %d\n", newVolume);
+
 				// change master volume
 				float volume_f;
 				volume_f = ((float) newVolume) / (128.0);
@@ -367,7 +528,9 @@ void loop()
 		{
 			if (players[i].sdwav->isStopped())
 			{
-				// FIXME restart it
+				Serial.printf("loop: restarting player %d\n", i);
+				// restart it
+				startPlayer(i, players[i].track, players[i].vol, players[i].flags);
 			}
 		}
 		// if paused, leave it alone
@@ -376,10 +539,11 @@ void loop()
 			// do nothing
 		}
 		// otherwise, if stopped, clear the player
-		else 
+		else if (players[i].flags & DMX_AUDIO_PLAYER_FLAG_PLAYING)
 		{
 			if (players[i].sdwav->isStopped())
 			{
+				Serial.printf("loop: stopping player %d\n", i);
 				players[i].flags = 0;
 				players[i].track = 0;
 				players[i].vol = 0;
