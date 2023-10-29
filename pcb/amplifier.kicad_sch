@@ -3513,7 +3513,7 @@
     (property "Value" "470u DNP" (at 180.34 76.9239 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 177.8 76.2 0)
+    (property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P2.50mm" (at 177.8 76.2 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 177.8 76.2 0)
