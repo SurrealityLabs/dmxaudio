@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from dmx import Colour, DMXInterface, DMXLight3Slot, DMXUniverse
+import time
 
 DMX_AUDIO_COMMAND_NOP = 0x00
 DMX_AUDIO_COMMAND_STOP_ALL = 0x01
@@ -17,7 +18,10 @@ DMX_AUDIO_COMMAND_TRACK_VOLUME = 0x0B
 DMX_AUDIO_COMMAND_MASTER_VOLUME = 0x0C
 
 NOPCommand = Colour(DMX_AUDIO_COMMAND_NOP, 0, 0)
-PlaySound0OnceMono = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_MONO, 0, 127)
+PlaySound1LoopMono = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_MONO, 1, 127)
+StopAllCommand = Colour(DMX_AUDIO_COMMAND_STOP_ALL, 0, 0)
+Stop1Command = Colour(DMX_AUDIO_COMMAND_STOP, 1, 0)
+Stop0Command = Colour(DMX_AUDIO_COMMAND_STOP, 0, 0)
 
 # Open an interface
 with DMXInterface("FT232R") as interface:
@@ -37,9 +41,35 @@ with DMXInterface("FT232R") as interface:
     interface.send_update()
 
     # Play the sound
-    light.set_colour(PlaySound0OnceMono)
+    light.set_colour(PlaySound1LoopMono)
 
-    print("Playing sound 0, moderate volume - did you hear it?")
+    print("Playing sound 1, looping, moderate volume - did you hear it?")
+
+    # Update the interface's frame to be the universe's current state
+    interface.set_frame(universe.serialise())
+
+    # Send an update to the DMX network
+    interface.send_update()
+
+    time.sleep(5)
+
+    # Send a NOP
+    light.set_colour(Stop1Command)
+
+    print("Sending a Stop 1 command, audio should stop")
+
+    # Update the interface's frame to be the universe's current state
+    interface.set_frame(universe.serialise())
+
+    # Send an update to the DMX network
+    interface.send_update()
+
+    time.sleep(5)
+
+    # Send a NOP
+    light.set_colour(StopAllCommand)
+
+    print("Sending a Stop All, sound should stop")
 
     # Update the interface's frame to be the universe's current state
     interface.set_frame(universe.serialise())
