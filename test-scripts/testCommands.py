@@ -182,11 +182,107 @@ Pause0CommandB = Colour(0, 0, 0)
 Pause1CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 1, 0)
 Pause1CommandB = Colour(0, 0, 0)
 
+Pause256CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 0, 1)
+Pause256CommandB = Colour(0, 0, 0)
+
+Pause257CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 1, 1)
+Pause257CommandB = Colour(0, 0, 0)
+
+Pause258CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 2, 1)
+Pause258CommandB = Colour(0, 0, 0)
+
+Pause259CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 3, 1)
+Pause259CommandB = Colour(0, 0, 0)
+
+Pause260CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 4, 1)
+Pause260CommandB = Colour(0, 0, 0)
+
+Pause261CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 5, 1)
+Pause261CommandB = Colour(0, 0, 0)
+
+Pause262CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 6, 1)
+Pause262CommandB = Colour(0, 0, 0)
+
+Pause263CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 7, 1)
+Pause263CommandB = Colour(0, 0, 0)
+
+Pause264CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 8, 1)
+Pause264CommandB = Colour(0, 0, 0)
+
+Pause265CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 9, 1)
+Pause265CommandB = Colour(0, 0, 0)
+
+Pause266CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 10, 1)
+Pause266CommandB = Colour(0, 0, 0)
+
+Pause267CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 11, 1)
+Pause267CommandB = Colour(0, 0, 0)
+
+Pause268CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 12, 1)
+Pause268CommandB = Colour(0, 0, 0)
+
+Pause269CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 13, 1)
+Pause269CommandB = Colour(0, 0, 0)
+
+Pause270CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 14, 1)
+Pause270CommandB = Colour(0, 0, 0)
+
+Pause271CommandA = Colour(DMX_AUDIO_COMMAND_PAUSE, 15, 1)
+Pause271CommandB = Colour(0, 0, 0)
+
 Resume0CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 0, 0)
 Resume0CommandB = Colour(0, 0, 0)
 
 Resume1CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 1, 0)
 Resume1CommandB = Colour(0, 0, 0)
+
+Resume256CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 0, 1)
+Resume256CommandB = Colour(0, 0, 0)
+
+Resume257CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 1, 1)
+Resume257CommandB = Colour(0, 0, 0)
+
+Resume258CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 2, 1)
+Resume258CommandB = Colour(0, 0, 0)
+
+Resume259CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 3, 1)
+Resume259CommandB = Colour(0, 0, 0)
+
+Resume260CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 4, 1)
+Resume260CommandB = Colour(0, 0, 0)
+
+Resume261CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 5, 1)
+Resume261CommandB = Colour(0, 0, 0)
+
+Resume262CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 6, 1)
+Resume262CommandB = Colour(0, 0, 0)
+
+Resume263CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 7, 1)
+Resume263CommandB = Colour(0, 0, 0)
+
+Resume264CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 8, 1)
+Resume264CommandB = Colour(0, 0, 0)
+
+Resume265CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 9, 1)
+Resume265CommandB = Colour(0, 0, 0)
+
+Resume266CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 10, 1)
+Resume266CommandB = Colour(0, 0, 0)
+
+Resume267CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 11, 1)
+Resume267CommandB = Colour(0, 0, 0)
+
+Resume268CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 12, 1)
+Resume268CommandB = Colour(0, 0, 0)
+
+Resume269CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 13, 1)
+Resume269CommandB = Colour(0, 0, 0)
+
+Resume270CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 14, 1)
+Resume270CommandB = Colour(0, 0, 0)
+
+Resume271CommandA = Colour(DMX_AUDIO_COMMAND_RESUME, 15, 1)
+Resume271CommandB = Colour(0, 0, 0)
 
 Volume0UpCommandA = Colour(DMX_AUDIO_COMMAND_TRACK_VOLUME, 0, 0)
 Volume0UpCommandB = Colour(192, 0, 0)
