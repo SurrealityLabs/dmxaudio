@@ -24,8 +24,8 @@ with DMXInterface("FT232R") as interface:
     interface.send_update()
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound256LoopPolyA)
-    lightB.set_colour(testCommands.PlaySound256LoopPolyB)
+    lightA.set_colour(testCommands.PlaySound256LoopPolyLockedA)
+    lightB.set_colour(testCommands.PlaySound256LoopPolyLockedB)
 
     print("Playing sound 256, looping, moderate volume - did you hear it?")
 
@@ -38,8 +38,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound257LoopPolyA)
-    lightB.set_colour(testCommands.PlaySound257LoopPolyB)
+    lightA.set_colour(testCommands.PlaySound257LoopPolyLockedA)
+    lightB.set_colour(testCommands.PlaySound257LoopPolyLockedB)
 
     print("Playing sound 257, looping, moderate volume - did you hear it?")
 
@@ -52,8 +52,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound258LoopPolyA)
-    lightB.set_colour(testCommands.PlaySound258LoopPolyB)
+    lightA.set_colour(testCommands.PlaySound258LoopPolyLockedA)
+    lightB.set_colour(testCommands.PlaySound258LoopPolyLockedB)
 
     print("Playing sound 258, looping, moderate volume - did you hear it?")
 
@@ -66,8 +66,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound259LoopPolyA)
-    lightB.set_colour(testCommands.PlaySound259LoopPolyB)
+    lightA.set_colour(testCommands.PlaySound259LoopPolyLockedA)
+    lightB.set_colour(testCommands.PlaySound259LoopPolyLockedB)
 
     print("Playing sound 259, looping, moderate volume - did you hear it?")
 
@@ -80,8 +80,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound260OncePolyA)
-    lightB.set_colour(testCommands.PlaySound260OncePolyB)
+    lightA.set_colour(testCommands.PlaySound260OncePolyLockedA)
+    lightB.set_colour(testCommands.PlaySound260OncePolyLockedB)
 
     print("Playing sound 260, once, moderate volume - did you hear it?")
 
@@ -94,8 +94,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(0.5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound261OncePolyA)
-    lightB.set_colour(testCommands.PlaySound261OncePolyB)
+    lightA.set_colour(testCommands.PlaySound261OncePolyLockedA)
+    lightB.set_colour(testCommands.PlaySound261OncePolyLockedB)
 
     print("Playing sound 261, once, moderate volume - did you hear it?")
 
@@ -108,8 +108,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(0.5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound262OncePolyA)
-    lightB.set_colour(testCommands.PlaySound262OncePolyB)
+    lightA.set_colour(testCommands.PlaySound262OncePolyLockedA)
+    lightB.set_colour(testCommands.PlaySound262OncePolyLockedB)
 
     print("Playing sound 262, once, moderate volume - did you hear it?")
 
@@ -122,8 +122,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(0.5)
 
     # Play the sound
-    lightA.set_colour(testCommands.PlaySound263OncePolyA)
-    lightB.set_colour(testCommands.PlaySound263OncePolyB)
+    lightA.set_colour(testCommands.PlaySound263OncePolyLockedA)
+    lightB.set_colour(testCommands.PlaySound263OncePolyLockedB)
 
     print("Playing sound 263, once, moderate volume - did you hear it?")
 

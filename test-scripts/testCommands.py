@@ -71,53 +71,149 @@ PlaySound270LoopPolyB = Colour(127, 0, 0)
 PlaySound271LoopPolyA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY, 15, 1)
 PlaySound271LoopPolyB = Colour(127, 0, 0)
 
-PlaySound256LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 0, 1)
-PlaySound256LoopOnceB = Colour(127, 0, 0)
+PlaySound256LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 0, 1)
+PlaySound256LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound257LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 1, 1)
-PlaySound257LoopOnceB = Colour(127, 0, 0)
+PlaySound257LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 1, 1)
+PlaySound257LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound258LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 2, 1)
-PlaySound258LoopOnceB = Colour(127, 0, 0)
+PlaySound258LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 2, 1)
+PlaySound258LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound259LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 3, 1)
-PlaySound259LoopOnceB = Colour(127, 0, 0)
+PlaySound259LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 3, 1)
+PlaySound259LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound260LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 4, 1)
-PlaySound260LoopOnceB = Colour(127, 0, 0)
+PlaySound260LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 4, 1)
+PlaySound260LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound261LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 5, 1)
-PlaySound261LoopOnceB = Colour(127, 0, 0)
+PlaySound261LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 5, 1)
+PlaySound261LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound262LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 6, 1)
-PlaySound262LoopOnceB = Colour(127, 0, 0)
+PlaySound262LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 6, 1)
+PlaySound262LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound263LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 7, 1)
-PlaySound263LoopOnceB = Colour(127, 0, 0)
+PlaySound263LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 7, 1)
+PlaySound263LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound264LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 8, 1)
-PlaySound264LoopOnceB = Colour(127, 0, 0)
+PlaySound264LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 8, 1)
+PlaySound264LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound265LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 9, 1)
-PlaySound265LoopOnceB = Colour(127, 0, 0)
+PlaySound265LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 9, 1)
+PlaySound265LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound266LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 10, 1)
-PlaySound266LoopOnceB = Colour(127, 0, 0)
+PlaySound266LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 10, 1)
+PlaySound266LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound267LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 11, 1)
-PlaySound267LoopOnceB = Colour(127, 0, 0)
+PlaySound267LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 11, 1)
+PlaySound267LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound268LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 12, 1)
-PlaySound268LoopOnceB = Colour(127, 0, 0)
+PlaySound268LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 12, 1)
+PlaySound268LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound269LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 13, 1)
-PlaySound269LoopOnceB = Colour(127, 0, 0)
+PlaySound269LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 13, 1)
+PlaySound269LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound270LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 14, 1)
-PlaySound270LoopOnceB = Colour(127, 0, 0)
+PlaySound270LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 14, 1)
+PlaySound270LoopPolyLockedB = Colour(127, 0, 0)
 
-PlaySound271LoopOnceA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_ONCE, 15, 1)
-PlaySound271LoopOnceB = Colour(127, 0, 0)
+PlaySound271LoopPolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED, 15, 1)
+PlaySound271LoopPolyLockedB = Colour(127, 0, 0)
+
+PlaySound256OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 0, 1)
+PlaySound256OncePolyB = Colour(127, 0, 0)
+
+PlaySound257OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 1, 1)
+PlaySound257OncePolyB = Colour(127, 0, 0)
+
+PlaySound258OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 2, 1)
+PlaySound258OncePolyB = Colour(127, 0, 0)
+
+PlaySound259OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 3, 1)
+PlaySound259OncePolyB = Colour(127, 0, 0)
+
+PlaySound260OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 4, 1)
+PlaySound260OncePolyB = Colour(127, 0, 0)
+
+PlaySound261OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 5, 1)
+PlaySound261OncePolyB = Colour(127, 0, 0)
+
+PlaySound262OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 6, 1)
+PlaySound262OncePolyB = Colour(127, 0, 0)
+
+PlaySound263OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 7, 1)
+PlaySound263OncePolyB = Colour(127, 0, 0)
+
+PlaySound264OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 8, 1)
+PlaySound264OncePolyB = Colour(127, 0, 0)
+
+PlaySound265OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 9, 1)
+PlaySound265OncePolyB = Colour(127, 0, 0)
+
+PlaySound266OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 10, 1)
+PlaySound266OncePolyB = Colour(127, 0, 0)
+
+PlaySound267OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 11, 1)
+PlaySound267OncePolyB = Colour(127, 0, 0)
+
+PlaySound268OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 12, 1)
+PlaySound268OncePolyB = Colour(127, 0, 0)
+
+PlaySound269OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 13, 1)
+PlaySound269OncePolyB = Colour(127, 0, 0)
+
+PlaySound270OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 14, 1)
+PlaySound270OncePolyB = Colour(127, 0, 0)
+
+PlaySound271OncePolyA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY, 15, 1)
+PlaySound271OncePolyB = Colour(127, 0, 0)
+
+PlaySound256OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 0, 1)
+PlaySound256OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound257OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 1, 1)
+PlaySound257OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound258OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 2, 1)
+PlaySound258OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound259OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 3, 1)
+PlaySound259OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound260OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 4, 1)
+PlaySound260OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound261OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 5, 1)
+PlaySound261OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound262OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 6, 1)
+PlaySound262OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound263OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 7, 1)
+PlaySound263OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound264OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 8, 1)
+PlaySound264OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound265OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 9, 1)
+PlaySound265OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound266OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 10, 1)
+PlaySound266OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound267OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 11, 1)
+PlaySound267OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound268OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 12, 1)
+PlaySound268OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound269OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 13, 1)
+PlaySound269OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound270OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 14, 1)
+PlaySound270OncePolyLockedB = Colour(127, 0, 0)
+
+PlaySound271OncePolyLockedA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED, 15, 1)
+PlaySound271OncePolyLockedB = Colour(127, 0, 0)
 
 StopAllCommandA = Colour(DMX_AUDIO_COMMAND_STOP_ALL, 0, 0)
 StopAllCommandB = Colour(0, 0, 0)
