@@ -1,31 +1,8 @@
 #!/usr/bin/python
 
 from dmx import Colour, DMXInterface, DMXLight3Slot, DMXUniverse
+import testCommands
 import time
-
-DMX_AUDIO_COMMAND_NOP = 0x00
-DMX_AUDIO_COMMAND_STOP_ALL = 0x01
-DMX_AUDIO_COMMAND_PLAY_ONCE_POLY = 0x02
-DMX_AUDIO_COMMAND_PLAY_LOOP_POLY = 0x03
-DMX_AUDIO_COMMAND_PLAY_ONCE_MONO = 0x04
-DMX_AUDIO_COMMAND_PLAY_LOOP_MONO = 0x05
-DMX_AUDIO_COMMAND_PLAY_ONCE_POLY_LOCKED = 0x06
-DMX_AUDIO_COMMAND_PLAY_LOOP_POLY_LOCKED = 0x07
-DMX_AUDIO_COMMAND_STOP = 0x08
-DMX_AUDIO_COMMAND_PAUSE = 0x09
-DMX_AUDIO_COMMAND_RESUME = 0x0A
-DMX_AUDIO_COMMAND_TRACK_VOLUME = 0x0B
-DMX_AUDIO_COMMAND_MASTER_VOLUME = 0x0C
-
-NOPCommand = Colour(DMX_AUDIO_COMMAND_NOP, 0, 0)
-PlaySound1LoopMono = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_MONO, 1, 127)
-StopAllCommand = Colour(DMX_AUDIO_COMMAND_STOP_ALL, 0, 0)
-Stop1Command = Colour(DMX_AUDIO_COMMAND_STOP, 1, 0)
-Stop0Command = Colour(DMX_AUDIO_COMMAND_STOP, 0, 0)
-Pause0Command = Colour(DMX_AUDIO_COMMAND_PAUSE, 0, 0)
-Pause1Command = Colour(DMX_AUDIO_COMMAND_PAUSE, 1, 0)
-Resume0Command = Colour(DMX_AUDIO_COMMAND_RESUME, 0, 0)
-Resume1Command = Colour(DMX_AUDIO_COMMAND_RESUME, 1, 0)
 
 # Open an interface
 with DMXInterface("FT232R") as interface:
@@ -33,10 +10,12 @@ with DMXInterface("FT232R") as interface:
     universe = DMXUniverse()
 
     # Define a light
-    light = DMXLight3Slot(address=0)
+    lightA = DMXLight3Slot(address=0)
+    lightB = DMXLight3Slot(address=3)
 
     # Add the light to a universe
-    universe.add_light(light)
+    universe.add_light(lightA)
+    universe.add_light(lightB)
 
     # Update the interface's frame to be the universe's current state
     interface.set_frame(universe.serialise())
@@ -45,7 +24,8 @@ with DMXInterface("FT232R") as interface:
     interface.send_update()
 
     # Play the sound
-    light.set_colour(PlaySound1LoopMono)
+    lightA.set_colour(testCommands.PlaySound1LoopMonoA)
+    lightB.set_colour(testCommands.PlaySound1LoopMonoB)
 
     print("Playing sound 1, looping, moderate volume - did you hear it?")
 
@@ -58,7 +38,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Send a pause
-    light.set_colour(Pause0Command)
+    lightA.set_colour(Pause0CommandA)
+	lightB.set_colour(Pause0CommandB)
 
     print("Sending a Pause 0 command, nothing should change")
 
@@ -71,7 +52,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Send a resume
-    light.set_colour(Resume0Command)
+    lightA.set_colour(Resume0CommandA)
+    lightB.set_colour(Resume0CommandB)
 
     print("Sending a Resume 0 command, nothing should change")
 
@@ -84,7 +66,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Send a Stop All
-    light.set_colour(StopAllCommand)
+    lightA.set_colour(StopAllCommandA)
+    lightB.set_colour(StopAllCommandB)
 
     print("Sending a Stop All, sound should stop")
 
