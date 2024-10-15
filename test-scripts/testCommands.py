@@ -17,6 +17,12 @@ DMX_AUDIO_COMMAND_MASTER_VOLUME = 0x0C
 NOPCommandA = Colour(DMX_AUDIO_COMMAND_NOP, 0, 0)
 NOPCommandB = Colour(0, 0, 0)
 
+PlaySound0OnceMonoA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_MONO, 0, 0)
+PlaySound0OnceMonoB = Colour(127, 0, 0)
+
+PlaySound1OnceMonoA = Colour(DMX_AUDIO_COMMAND_PLAY_ONCE_MONO, 1, 0)
+PlaySound1OnceMonoB = Colour(127, 0, 0)
+
 PlaySound0LoopMonoA = Colour(DMX_AUDIO_COMMAND_PLAY_LOOP_MONO, 0, 0)
 PlaySound0LoopMonoB = Colour(127, 0, 0)
 
@@ -397,3 +403,6 @@ MasterVolumeUpCommandB = Colour(192, 0, 0)
 
 MasterVolumeDownCommandA = Colour(DMX_AUDIO_COMMAND_MASTER_VOLUME, 0, 0)
 MasterVolumeDownCommandB = Colour(64, 0, 0)
+
+MasterVolumeNormalCommandA = Colour(DMX_AUDIO_COMMAND_MASTER_VOLUME, 0, 0)
+MasterVolumeNormalCommandB = Colour(127, 0, 0)

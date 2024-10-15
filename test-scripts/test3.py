@@ -10,8 +10,8 @@ with DMXInterface("FT232R") as interface:
     universe = DMXUniverse()
 
     # Define a light
-    lightA = DMXLight3Slot(address=0)
-    lightB = DMXLight3Slot(address=3)
+    lightA = DMXLight3Slot(address=1)
+    lightB = DMXLight3Slot(address=4)
 
     # Add the light to a universe
     universe.add_light(lightA)
@@ -38,8 +38,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Send a Stop Track 1
-    lightA.set_colour(Stop1CommandA)
-    lightB.set_colour(Stop1CommandB)
+    lightA.set_colour(testCommands.Stop1CommandA)
+    lightB.set_colour(testCommands.Stop1CommandB)
 
     print("Sending a Stop 1 command, audio should stop")
 
@@ -52,8 +52,8 @@ with DMXInterface("FT232R") as interface:
     time.sleep(5)
 
     # Send a Stop All
-    lightA.set_colour(StopAllCommandA)
-    lightB.set_colour(StopAllCommandB)
+    lightA.set_colour(testCommands.StopAllCommandA)
+    lightB.set_colour(testCommands.StopAllCommandB)
 
     print("Sending a Stop All, sound should stop")
 

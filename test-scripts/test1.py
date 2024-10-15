@@ -9,8 +9,8 @@ with DMXInterface("FT232R") as interface:
     universe = DMXUniverse()
 
     # Define a light
-    lightA = DMXLight3Slot(address=0)
-    lightB = DMXLight3Slot(address=3)
+    lightA = DMXLight3Slot(address=1)
+    lightB = DMXLight3Slot(address=4)
 
     # Add the light to a universe
     universe.add_light(lightA)
